@@ -1,4 +1,4 @@
-const baseConf = require('./env');
+import baseConf from "./env"
 console.log("baseurl:"+baseConf.baseUrl);
 
 
@@ -6,12 +6,12 @@ export default async(url='',data={},type='GET',methods='fetch')=>{
     type = type.toUpperCase();
     url = baseConf.baseUrl + url;
     if(type == 'GET'){
-        baseStr = '';
+        let baseStr = '';
         Object.keys(data).forEach((key)=>{
             baseStr += key + '=' + data[key] + '&';
         })
         if(baseStr !== ''){
-            baurl = baseStr.substr(0,baseStr.lastIndexOf('&'));
+            let baurl = baseStr.substr(0,baseStr.lastIndexOf('&'));
             url += baurl;
         }
     }
@@ -45,7 +45,7 @@ export default async(url='',data={},type='GET',methods='fetch')=>{
                 requestObj = new XMLHttpRequest();
             }
             else{
-                requestObj = new ActiveXObject();
+                requestObj = new ActiveXObject;
             }
             let sendData = '';
             if (type == 'POST') {
@@ -60,7 +60,7 @@ export default async(url='',data={},type='GET',methods='fetch')=>{
                     if(requestObj.status == 200){
                         const resp = requestObj.response;
                         if(typeof resp !== 'object'){
-                            resp = JSON.parse(resp);
+                            let resp = JSON.parse(resp);
                         }
                         resolve(resp);
                     }else{
